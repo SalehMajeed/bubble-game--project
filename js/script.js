@@ -1,19 +1,18 @@
-var path = null;
+document.addEventListener('DOMContentLoaded', (event) => {
+  const canvas = document.getElementById('my-canvas');
+  paper.setup(canvas);
+  const { Path, view } = paper;
 
-const canvas = document.getElementById('my-canvas');
-paper.setup(canvas);
-const { Path } = paper;
+  const circle = new Path.Circle({
+    center: view.center,
+    radius: 70,
+    fillColor: 'red',
+  });
 
-path = new Path.Rectangle({
-  point: [75, 75],
-  size: [75, 75],
-  strokeColor: 'black',
+  console.log(circle);
+
+  setInterval(() => {
+    circle.fillColor.hue += 1;
+    circle.position.x += 1;
+  }, 10);
 });
-
-console.log(path);
-
-setInterval(() => {
-  if (path === null) return;
-  path.rotate(3);
-  path.position.x += 1
-}, 10);
